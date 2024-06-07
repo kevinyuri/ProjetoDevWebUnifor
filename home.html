@@ -117,7 +117,15 @@
       }
     </style>
   </head>
+  <script>
+    // Check if the user is logged in
+    const loggedIn = localStorage.getItem("loggedIn");
 
+    // Redirect to login page if not logged in
+    if (!loggedIn) {
+      window.location.href = "index.html";
+    }
+  </script>
   <body class="bg-gray-100 text-gray-900 tracking-wider leading-normal">
     <div class="flex h-screen bg-gray-100">
       <!-- sidebar -->
@@ -148,6 +156,8 @@
               Início
             </a>
             <a
+              onclick="logout()"
+              ;
               href="#"
               class="flex items-center px-4 py-2 text-gray-100 hover:bg-gray-700"
             >

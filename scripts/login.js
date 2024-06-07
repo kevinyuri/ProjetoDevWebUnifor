@@ -8,6 +8,7 @@ function login() {
     const validPassword = 'password';
 
     if (username === validUsername && password === validPassword) {
+        localStorage.setItem('loggedIn', 'true');
         // Redirect to the home page if credentials are correct
         window.location.href = 'home.html';
     } else {

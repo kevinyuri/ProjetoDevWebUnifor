@@ -74,8 +74,12 @@ async function createUser(data) {
     }
 }
 
+function logout() {
+    localStorage.removeItem('loggedIn');
+    window.location.href = 'index.html';
+}
+
 async function deleteUser(id) {
-    debugger;
     console.log(id);
     // Confirmar exclusão com SweetAlert2
     Swal.fire({
