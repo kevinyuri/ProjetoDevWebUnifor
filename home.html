@@ -1,14 +1,307 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="antialiased">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Usuários Unifor</title>
-    <link href="styles/output.css" rel="stylesheet" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>DataTables</title>
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <link
+      href="https://unpkg.com/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel=" stylesheet"
+    />
+    <!--Replace with your tailwind.css once created-->
+
+    <!--Regular Datatables CSS-->
+    <link
+      href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css"
+      rel="stylesheet"
+    />
+    <!--Responsive Extension Datatables CSS-->
+    <link
+      href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.dataTables.min.css"
+      rel="stylesheet"
+    />
+
+    <style>
+      /*Overrides for Tailwind CSS */
+
+      /*Form fields*/
+      .dataTables_wrapper select,
+      .dataTables_wrapper .dataTables_filter input {
+        color: #4a5568;
+        /*text-gray-700*/
+        padding-left: 1rem;
+        /*pl-4*/
+        padding-right: 1rem;
+        /*pl-4*/
+        padding-top: 0.5rem;
+        /*pl-2*/
+        padding-bottom: 0.5rem;
+        /*pl-2*/
+        line-height: 1.25;
+        /*leading-tight*/
+        border-width: 2px;
+        /*border-2*/
+        border-radius: 0.25rem;
+        border-color: #edf2f7;
+        /*border-gray-200*/
+        background-color: #edf2f7;
+        /*bg-gray-200*/
+      }
+
+      /*Row Hover*/
+      table.dataTable.hover tbody tr:hover,
+      table.dataTable.display tbody tr:hover {
+        background-color: #ebf4ff;
+        /*bg-indigo-100*/
+      }
+
+      /*Pagination Buttons*/
+      .dataTables_wrapper .dataTables_paginate .paginate_button {
+        font-weight: 700;
+        /*font-bold*/
+        border-radius: 0.25rem;
+        /*rounded*/
+        border: 1px solid transparent;
+        /*border border-transparent*/
+      }
+
+      /*Pagination Buttons - Current selected */
+      .dataTables_wrapper .dataTables_paginate .paginate_button.current {
+        color: #fff !important;
+        /*text-white*/
+        box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1),
+          0 1px 2px 0 rgba(0, 0, 0, 0.06);
+        /*shadow*/
+        font-weight: 700;
+        /*font-bold*/
+        border-radius: 0.25rem;
+        /*rounded*/
+        background: #667eea !important;
+        /*bg-indigo-500*/
+        border: 1px solid transparent;
+        /*border border-transparent*/
+      }
+
+      /*Pagination Buttons - Hover */
+      .dataTables_wrapper .dataTables_paginate .paginate_button:hover {
+        color: #fff !important;
+        /*text-white*/
+        box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1),
+          0 1px 2px 0 rgba(0, 0, 0, 0.06);
+        /*shadow*/
+        font-weight: 700;
+        /*font-bold*/
+        border-radius: 0.25rem;
+        /*rounded*/
+        background: #667eea !important;
+        /*bg-indigo-500*/
+        border: 1px solid transparent;
+        /*border border-transparent*/
+      }
+
+      /*Add padding to bottom border */
+      table.dataTable.no-footer {
+        border-bottom: 1px solid #e2e8f0;
+        /*border-b-1 border-gray-300*/
+        margin-top: 0.75em;
+        margin-bottom: 0.75em;
+      }
+
+      /*Change colour of responsive icon*/
+      table.dataTable.dtr-inline.collapsed > tbody > tr > td:first-child:before,
+      table.dataTable.dtr-inline.collapsed
+        > tbody
+        > tr
+        > th:first-child:before {
+        background-color: #667eea !important;
+        /*bg-indigo-500*/
+      }
+    </style>
   </head>
-  <body class="flex items-center justify-center min-h-screen bg-gray-100">
-    <div class="bg-white p-8 rounded shadow-md">
-      <h1 class="text-3xl font-bold underline">Hello world!</h1>
+
+  <body class="bg-gray-100 text-gray-900 tracking-wider leading-normal">
+    <div class="flex h-screen bg-gray-100">
+      <!-- sidebar -->
+      <div class="hidden md:flex flex-col w-64 bg-gray-800">
+        <div class="flex items-center justify-center h-16 bg-gray-900">
+          <span class="text-white font-bold uppercase">Unifor Usuários</span>
+        </div>
+        <div class="flex flex-col flex-1 overflow-y-auto">
+          <nav class="flex-1 px-2 py-4 bg-gray-800">
+            <a
+              href="#"
+              class="flex items-center px-4 py-2 text-gray-100 hover:bg-gray-700"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-6 w-6 mr-2"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M4 6h16M4 12h16M4 18h16"
+                />
+              </svg>
+              Início
+            </a>
+            <a
+              href="#"
+              class="flex items-center px-4 py-2 mt-2 text-gray-100 hover:bg-gray-700"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-6 w-6 mr-2"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M6 18L18 6M6 6l12 12"
+                />
+              </svg>
+              Messages
+            </a>
+          </nav>
+        </div>
+      </div>
+
+      <!-- Main content -->
+      <div class="flex flex-col flex-1 overflow-y-auto">
+        <div
+          class="flex items-center justify-between h-16 bg-white border-b border-gray-200"
+        >
+          <div class="flex items-center px-4">
+            <button
+              class="text-gray-500 focus:outline-none focus:text-gray-700"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-6 w-6"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M4 6h16M4 12h16M4 18h16"
+                />
+              </svg>
+            </button>
+        
+          </div>
+        </div>
+        <div class="p-4">
+          <p class="mt-2 text-gray-600">
+            
+              <!--Title-->
+        
+              <!--Card-->
+              <div id="recipients" class="p-8 mt-6 lg:mt-0 rounded shadow bg-white">
+                <div class="flex items-center justify-between pb-12">
+                  <!--Title-->
+                  <h1
+                    class="font-sans font-bold break-normal text-indigo-500 text-xl md:text-2xl"
+                  >
+                    Sistema de Gerenciamento de Usuários
+                  </h1>
+                  <!--Button-->
+                  <button
+                    class="bg-indigo-500 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded"
+                  >
+                    Novo Usuário
+                  </button>
+                </div>
+                <table
+                  id="example"
+                  class="stripe hover"
+                  style="width: 100%; padding-top: 1em; padding-bottom: 1em"
+                ></table>
+              </div>
+              <!--/Card-->
+            
+          </p>
+        </div>
+      </div>
     </div>
+    <!--Container-->
+   
+    <!--/container-->
+
+    <!-- jQuery -->
+    <script
+      type="text/javascript"
+      src="https://code.jquery.com/jquery-3.4.1.min.js"
+    ></script>
+
+    <!--Datatables -->
+    <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
+    <script>
+      async function fetchData() {
+        const response = await fetch(
+          "https://uniforusuariosproject.azurewebsites.net/v1/usuarios"
+        );
+        const data = await response.json();
+        return data;
+      }
+
+      async function populateDataTable() {
+        const data = await fetchData();
+        const table = $("#example")
+          .DataTable({
+            data: data,
+            columns: [
+              { title: "Nome", data: "nome", className: "px-4 py-2" },
+              { title: "Name", data: "sobrenome", className: "px-4 py-2" },
+              { title: "Usuario", data: "userName", className: "px-4 py-2" },
+              {
+                title: "Ações",
+                className: "px-4 py-2 m-auto flex justify-center",
+                orderable: false, // This column won't be sortable
+                searchable: false, // This column won't be included in searches
+                render: function (data, type, row, meta) {
+                  return `<button onclick="editRow(${meta.row})" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mr-2">Editar</button>
+                            <button onclick="deleteRow(${meta.row})" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">Excluir</button>`;
+                },
+              },
+              // Add more columns as needed
+            ],
+            responsive: true,
+            language: {
+              search: "Buscar:",
+              searchPlaceholder: "Buscar...",
+              lengthMenu: "Mostrar _MENU_ registros por página",
+              zeroRecords: "Nenhum registro encontrado",
+              info: "Mostrando página _PAGE_ de _PAGES_",
+              infoEmpty: "Sem registros disponíveis",
+              infoFiltered: "(filtrado de _MAX_ registros totais)",
+              paginate: {
+                first: "Primeira",
+                last: "Última",
+                next: "Próxima",
+                previous: "Anterior",
+              },
+            },
+          })
+          .columns.adjust()
+          .responsive.recalc();
+      }
+
+      $(document).ready(function () {
+        populateDataTable();
+      });
+    </script>
   </body>
 </html>
