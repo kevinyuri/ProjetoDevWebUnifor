@@ -78,12 +78,13 @@
             </p>
             <div class="mt-10 flex items-center justify-center gap-x-6">
               <a
-                href="#"
+                onclick="criarUsuario()"
+                style="cursor: pointer;"
                 class="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                 >Cadastre-se agora</a
               >
-              <a href="#" class="text-sm font-semibold leading-6 text-gray-900"
-                >Faça login aqui <span aria-hidden="true">→</span></a
+              <a href="login.html" class="text-sm font-semibold leading-6 text-gray-900"
+                >Acesse o sistema <span aria-hidden="true">→</span></a
               >
             </div>
           </div>
@@ -115,6 +116,91 @@
               </div>
           </div>
       </div>
+      <div
+      id="userModal"
+      class="fixed inset-0 hidden bg-gray-900 bg-opacity-50 flex items-center justify-center"
+    >
+      <div class="bg-white rounded-lg shadow-lg p-8 max-w-md w-full">
+        <!-- Título do Modal -->
+        <h2 class="text-2xl font-bold text-center text-indigo-500 mb-8">
+          Criar Usuário
+        </h2>
+
+        <!-- Formulário -->
+        <form>
+          <!-- Campo Nome -->
+          <div class="mb-4">
+            <label class="block text-gray-700 font-bold mb-2" for="nome"
+              >Nome</label
+            >
+            <input
+              class="w-full px-3 py-2 border rounded shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
+              id="nome"
+              name="nome"
+              type="text"
+              placeholder="Digite o nome"
+            />
+          </div>
+
+          <!-- Campo Sobrenome -->
+          <div class="mb-4">
+            <label class="block text-gray-700 font-bold mb-2" for="sobrenome"
+              >Sobrenome</label
+            >
+            <input
+              class="w-full px-3 py-2 border rounded shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
+              id="sobrenome"
+              name="sobrenome"
+              type="text"
+              placeholder="Digite o sobrenome"
+            />
+          </div>
+
+          <!-- Campo Nome de Usuário -->
+          <div class="mb-4">
+            <label class="block text-gray-700 font-bold mb-2" for="username"
+              >Nome de Usuário</label
+            >
+            <input
+              class="w-full px-3 py-2 border rounded shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
+              id="username"
+              name="userName"
+              type="text"
+              placeholder="Digite o nome de usuário"
+            />
+          </div>
+
+          <!-- Campo Senha -->
+          <div class="mb-6">
+            <label class="block text-gray-700 font-bold mb-2" for="senha"
+              >Senha</label
+            >
+            <input
+              class="w-full px-3 py-2 border rounded shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
+              id="senha"
+              name="senha"
+              type="password"
+              placeholder="Digite a senha"
+            />
+          </div>
+        </form>
+        <!-- Botões -->
+        <div class="flex items-center justify-between">
+          <button
+            class="bg-indigo-500 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+            onclick="handle()"
+          >
+            Criar Conta
+          </button>
+          <button
+            onclick="closeModal()"
+            class="text-gray-500 hover:text-gray-700"
+          >
+            Cancelar
+          </button>
+        </div>
+      </div>
+    </div>
         <div
           class="absolute inset-x-0 top-[calc(100%-13rem)] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[calc(100%-30rem)]"
           aria-hidden="true"
@@ -145,5 +231,7 @@
         </div>
       </div>
     </div>
+    <script src="scripts/scripts.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   </body>
 </html>
